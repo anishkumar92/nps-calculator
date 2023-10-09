@@ -4,7 +4,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "npx ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -24,7 +24,6 @@
     "rxjs": "~7.8.0",
     "tailwindcss-animatecss": "^3.0.4",
     "tslib": "^2.3.0",
-    "vercel": "^32.4.1",
     "zone.js": "~0.13.0"
   },
   "devDependencies": {
