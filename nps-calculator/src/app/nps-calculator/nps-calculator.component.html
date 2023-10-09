@@ -1,0 +1,54 @@
+<div class="container mx-auto p-5">
+    <h1 class="text-2xl font-bold mb-5">National Pension Scheme Calculator</h1>
+    <div class="border p-4 rounded shadow-md">
+        <label class="block mb-2 font-semibold">Your Age:</label>
+        <input [(ngModel)]="age" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Current NPS Balance:</label>
+        <input [(ngModel)]="currentNpsBalance" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Your Contribution (Monthly):</label>
+        <input [(ngModel)]="yourContribution" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Employer Contribution (Monthly):</label>
+        <input [(ngModel)]="employerContribution" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Increase Contribution Every Year (in Rupees):</label>
+        <input [(ngModel)]="increaseContributionEveryYear" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">Expected Returns Rate (%):</label>
+        <input [(ngModel)]="expectedReturn" type="number" class="w-full p-2 border rounded mb-4">
+
+        <label class="block mb-2 font-semibold">You want to contribute till:</label>
+        <select [(ngModel)]="contributeTill" class="w-full p-2 border rounded mb-4">
+            <option value="60">Retirement (60 Years of age)</option>
+            <!-- Add more options here if needed -->
+        </select>
+
+        <button (click)="calculate()"
+            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Calculate</button>
+    </div>
+    <!-- Result section -->
+    <div class="result-section mt-4 p-4 border border-gray-300 rounded bg-gray-100">
+        <h2 class="text-lg font-semibold mb-2 text-gray-800 border-b border-gray-300 pb-2">Results:</h2>
+        <div class="flex flex-col gap-2">
+            <div class="text-gray-700 py-1">Amount at Retirement: ₹{{ amountAtRetirement | number:'1.0-2' }}</div>
+            <div class="text-gray-700 py-1">Your Contributions (A): ₹{{ yourTotalContributions | number:'1.0-2' }}</div>
+            <div class="text-gray-700 py-1">Employer Contributions (B): ₹{{ employerTotalContributions | number:'1.0-2'
+                }}
+            </div>
+            <div class="text-gray-700 py-1">Total Contributions (A + B): ₹{{ totalContributions | number:'1.0-2' }}
+            </div>
+            <div class="text-gray-700 py-1">Total Returns: ₹{{ totalReturns | number:'1.0-2' }}</div>
+        </div>
+        <div class="mt-4 text-gray-600 text-sm">
+            <p>At Retirement or at Exit, you can withdraw a maximum of 60% of the accumulated amount.</p>
+            <p>The remaining amount should be invested to purchase a "Pension Fund" that provides monthly pension during
+                your retirement life.</p>
+            <p>Go to "Pension" Tab to calculate further.</p>
+        </div>
+    </div>
+
+
+
+</div>
