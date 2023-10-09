@@ -34,27 +34,44 @@ export class NpsCalculatorComponent {
     let currentBalance = this.currentNpsBalance;
 
     for (let year = 0; year < yearsToMaturity; year++) {
-      const yearlyYourContribution =
-        (this.yourContribution + year * this.increaseContributionEveryYear) *
+      let yearlyYourContribution =
+        (this.yourContribution + this.increaseContributionEveryYear * year) *
         12;
-      const yearlyEmployerContribution =
+      let yearlyEmployerContribution =
         (this.employerContribution +
-          year * this.increaseContributionEveryYear) *
+          this.increaseContributionEveryYear * year) *
         12;
-
-      currentBalance += yearlyYourContribution + yearlyEmployerContribution;
-      currentBalance = currentBalance * (1 + this.expectedReturn / 100);
 
       totalYourContribution += yearlyYourContribution;
       totalEmployerContribution += yearlyEmployerContribution;
+
+      // Add contributions to the current balance
+      currentBalance += yearlyYourContribution + yearlyEmployerContribution;
+
+      // Compound the interest
+      currentBalance = currentBalance * (1 + this.expectedReturn / 100);
     }
 
-    this.totalInvestment =
-      totalYourContribution +
-      totalEmployerContribution +
-      this.currentNpsBalance;
+    this.totalInvestment = totalYourContribution + totalEmployerContribution;
     this.maturityAmount = currentBalance;
     this.totalInterest = this.maturityAmount - this.totalInvestment;
-    this.minAnnuityInvestment = 0.4 * this.maturityAmount; // Based on the 40% rule
+
+    // Calculate amountAtRetirement
+    this.amountAtRetirement = this.maturityAmount;
+
+    // Calculate yourTotalContributions
+    this.yourTotalContributions = totalYourContribution;
+
+    // Calculate employerTotalContributions
+    this.employerTotalContributions = totalEmployerContribution;
+
+    // Calculate totalContributions
+    this.totalContributions =
+      this.yourTotalContributions +
+      this.employerTotalContributions +
+      this.currentNpsBalance;
+
+    // Calculate totalReturns
+    this.totalReturns = this.totalInterest;
   }
 }
